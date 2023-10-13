@@ -9,6 +9,6 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
-        <!--Im adding a comment-->
+        
     </VerticalStackLayout>
 </ContentPage>

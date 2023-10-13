@@ -1,3 +1,4 @@
 1: Creation of Schedule VIEW objects: FinishedMonthView and a FinishedDayView
 2: Create Domain, DTO, 
-2: Create a more suitable Main Page and implement navigation(reccomend flyout)
+3: Create a more suitable Main Page and implement navigation(reccomend flyout)
+4: Make colors dynamic
