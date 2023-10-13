@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel ="clr-namespace:CustomCalendar.ViewModels"
+             x:Class="CustomCalendar.CustomViews.DayView"
+             x:DataType="viewmodel:DayViewModel">
+    <Border Stroke="white">
+        <VerticalStackLayout>
+            <Label 
+            Text="{Binding DayLabel}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+            <Label
+            Text="First Shift:"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"/>
+            <!--Add binding to each picker to set/add to list-->
+            <Picker Title="Select Employee"
+                    ItemsSource="{Binding AllEmployees}"
+                    SelectedIndexChanged="OnPickerSelectedIndexChanged"
+                    />
+            <Picker Title="Select Employee"
+                    ItemsSource="{Binding AllEmployees}"/>
+            <Picker Title="Select Employee"
+                    ItemsSource="{Binding AllEmployees}"/>
+            <Label
+                Text="Second Shift:"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
+            <Picker Title="Select Employee"
+        ItemsSource="{Binding AllEmployees}"
+        />
+            <Picker Title="Select Employee"
+        ItemsSource="{Binding AllEmployees}"/>
+            <Picker Title="Select Employee"
+        ItemsSource="{Binding AllEmployees}"/>
+            <Label
+    Text="Third Shift:"
+    HorizontalOptions="Center"
+    VerticalOptions="Center"/>
+            <Picker Title="Select Employee"
+        ItemsSource="{Binding AllEmployees}"
+        />
+            <Picker Title="Select Employee"
+        ItemsSource="{Binding AllEmployees}"/>
+            <Picker Title="Select Employee"
+        ItemsSource="{Binding AllEmployees}"/>
+        </VerticalStackLayout>
+    </Border>
+</ContentView>

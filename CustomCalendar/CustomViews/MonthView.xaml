@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel ="clr-namespace:CustomCalendar.ViewModels"
+             x:Class="CustomCalendar.CustomViews.MonthView"
+             x:DataType="viewmodel:MonthViewViewModel">
+    <Grid
+        x:Name="MonthLayout">
+        <Grid.RowDefinitions>
+            <!--Month-->
+            <RowDefinition/>
+            <!--Week Label-->
+            <RowDefinition/>
+            <!--WeekStart-->
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label
+            Text="{Binding CurrentMonth}"
+            Grid.Row="0"
+            Grid.ColumnSpan="7"
+            HorizontalTextAlignment="Center"/>
+       
+        <!--#region WeekDay Labels-->
+        <Border Stroke="White"
+                Grid.Row="1"
+                Grid.Column="0">
+            <Label
+                Text="Sunday"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                />
+        </Border>
+        <Border Stroke="White"
+        Grid.Row="1"
+        Grid.Column="1">
+            <Label
+        Text="Monday"
+                HorizontalOptions="Center"
+VerticalOptions="Center"
+        />
+        </Border>
+        <Border Stroke="White"
+        Grid.Row="1"
+        Grid.Column="2">
+            <Label
+        Text="Tuesday"
+                HorizontalOptions="Center"
+VerticalOptions="Center"
+        />
+        </Border>
+        <Border Stroke="White"
+        Grid.Row="1"
+        Grid.Column="3">
+            <Label
+        Text="Wednesday"
+                HorizontalOptions="Center"
+VerticalOptions="Center"
+        />
+        </Border>
+        <Border Stroke="White"
+        Grid.Row="1"
+        Grid.Column="4">
+            <Label
+        Text="Thursday"
+                HorizontalOptions="Center"
+VerticalOptions="Center"
+        />
+        </Border>
+        <Border Stroke="White"
+        Grid.Row="1"
+        Grid.Column="5">
+            <Label
+        Text="Friday"
+                HorizontalOptions="Center"
+VerticalOptions="Center"
+        />
+        </Border>
+        <Border Stroke="White"
+        Grid.Row="1"
+        Grid.Column="6">
+            <Label
+        Text="Saturday"
+                HorizontalOptions="Center"
+VerticalOptions="Center"
+        />
+        </Border>
+        <!--#endregion-->
+        
+        <!--#region SideBar-->
+        <Border Stroke="white"
+                Grid.RowSpan="7"
+                Grid.Column="7">
+            
+        </Border>
+        <!--#endregion-->
+
+    </Grid>
+</ContentView>
