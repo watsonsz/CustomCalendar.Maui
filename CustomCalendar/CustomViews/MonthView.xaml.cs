@@ -24,6 +24,19 @@ public partial class MonthView : ContentView
         CreateDayBlocks();
 
     }
+    public MonthView(int month, int year)
+    {
+        InitializeComponent();
+        _viewModel = new MonthViewViewModel(month);
+        BindingContext = _viewModel;
+        CreateDayViewBlocks();
+
+    }
+
+    private void CreateDayViewBlocks()
+    {
+        throw new NotImplementedException();
+    }
 
     public void CreateDayBlocks()
     {

@@ -2,9 +2,9 @@ using CustomCalendar.CustomViews;
 
 namespace CustomCalendar;
 
-public partial class SchedulePage : ContentPage
+public partial class ViewSchedulePage : ContentPage
 {
-	public SchedulePage()
+	public ViewSchedulePage()
 	{
 		InitializeComponent();
         BindingContext = this;

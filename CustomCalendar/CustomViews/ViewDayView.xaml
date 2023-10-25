@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CustomCalendar.CustomViews.ViewDayView"
+             xmlns:viewmodel ="clr-namespace:CustomCalendar.ViewModels"
+             x:DataType="viewmodel:DayViewModel"
+             Title="ViewDayView">
+    <VerticalStackLayout>
+        <Border Stroke="white">
+            <VerticalStackLayout>
+                <Label 
+        Text="{Binding DayLabel}"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" />
+                <Label
+                    x:Name="FirstShift"
+                    Text="First Shift"
+                    TextDecorations="Underline"
+                    />
+                <ListView ItemsSource="{Binding FirstShiftEmployees}"/>
+                <Label
+                    Text="Second Shift"
+                    TextDecorations="Underline"/>
+                <ListView ItemsSource="{Binding LastShiftEmployees}"/>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentPage>
