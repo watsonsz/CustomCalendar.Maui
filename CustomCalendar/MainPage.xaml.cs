@@ -18,9 +18,10 @@ namespace CustomCalendar
         //This needs to go to SchedulePage.xaml.cs
         private void CreateCalendar(Object sender, EventArgs e)
         {
+            MainPanel.Clear();
             var check = DatePicked;
             var checkTwo = DatePicked.Month;
-            MainPanel.Add(new MonthView(checkTwo));
+            MainPanel.Add(new MonthView(checkTwo, DatePicked.Year));
         }
 
 

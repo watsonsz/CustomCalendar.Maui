@@ -49,6 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
@@ -72,6 +73,10 @@
 
 	<ItemGroup>
 	  <Folder Include="Pages\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\CustomCalendar.BusinessEntity\CustomCalendar.BusinessEntity.csproj" />
 	</ItemGroup>
 
 </Project>

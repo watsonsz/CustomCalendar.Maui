@@ -35,7 +35,16 @@ public partial class MonthView : ContentView
 
     private void CreateDayViewBlocks()
     {
-        throw new NotImplementedException();
+        int row = ROW_Start;
+        foreach (var day in _viewModel.Days)
+        {
+            int column = (int)day.Date.DayOfWeek;
+            MonthLayout.Add(new ViewDayView(day), column, row);
+            if (column == 6)
+            {
+                row++;
+            }
+        }
     }
 
     public void CreateDayBlocks()

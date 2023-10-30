@@ -1,22 +1,23 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CustomCalendar.BusinessEntity;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CustomCalendar.ViewModels
 {
-    public class DayViewModel
+    public partial class DayViewModel: ObservableObject
     {
         public DayViewModel(DateTime date)
         {
             this.Date = date;
             //allEmployees = employeeBL.GetAll();
             DAYOFWEEKNUMBER = (int)Date.DayOfWeek;
-            AllEmployees = new List<string>();
-            AllEmployees.Add("Zack");
-            AllEmployees.Add("Talaine");
-            
+            firstshiftemployees = new ObservableCollection<EmployeeEntity> { new EmployeeEntity { Name = "zack" } };
         }
         public string DayLabel { get => GetLabel();}
 
@@ -29,11 +30,25 @@ namespace CustomCalendar.ViewModels
 
 
         public int DAYOFWEEKNUMBER { get; set; }
-        public List<string> AllEmployees { get; set; }
+        public ObservableCollection<string> AllEmployees { get; set; }
+        public EmployeeEntity SelectedEmployee { get; set; }
 
         //These need to be done with employees instead of strings
-        public List<string> FirstShiftEmployees { get; set; } = new List<string>();
-        public List<string> LastShiftEmployees { get; set; } = new List<string>();
+
+        [ObservableProperty]
+        public ObservableCollection<EmployeeEntity> firstshiftemployees = new ObservableCollection<EmployeeEntity>();
+
+        [ObservableProperty]
+        public ObservableCollection<EmployeeEntity> secondshiftemployees = new ObservableCollection<EmployeeEntity>();
+
+        [ObservableProperty]
+        public ObservableCollection<EmployeeEntity> lastshiftemployees = new ObservableCollection<EmployeeEntity>();
+
+        [ObservableProperty]
+        public ObservableCollection<EmployeeEntity> kitchenstaff = new ObservableCollection<EmployeeEntity>();
+
+        [ObservableProperty]
+        public ObservableCollection<EmployeeEntity> housekeeping = new ObservableCollection<EmployeeEntity>();
 
         public string GetLabel()
         {
@@ -43,7 +58,27 @@ namespace CustomCalendar.ViewModels
             return label;
         }
 
-        
+        [RelayCommand]
+        void RemoveEmployee()
+        {
+            var removedEmployee = SelectedEmployee;
+            CheckEmployee(Firstshiftemployees, removedEmployee);
+            CheckEmployee(Secondshiftemployees, removedEmployee);
+            CheckEmployee(Lastshiftemployees, removedEmployee);
+            CheckEmployee(Kitchenstaff, removedEmployee);
+            CheckEmployee(Housekeeping, removedEmployee);
+        }
 
+        private void CheckEmployee(ObservableCollection<EmployeeEntity> employeeList, EmployeeEntity removedEmployee)
+        {
+            foreach(var entity in employeeList)
+            {
+                if(entity.Id == removedEmployee.Id)
+                {
+                    employeeList.Remove(entity);
+                    break;
+                }
+            }
+        }
     }
 }

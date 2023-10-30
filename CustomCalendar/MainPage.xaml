@@ -9,7 +9,6 @@
     <ScrollView>
         
         <VerticalStackLayout
-            x:Name="MainPanel"
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Start">
@@ -28,6 +27,13 @@
                         Clicked="CreateCalendar"
                             Grid.Column="1"/>
                 </Grid>
+            <VerticalStackLayout
+                x:Name="MainPanel"
+Spacing="25"
+Padding="30,0"
+VerticalOptions="Start">
+                
+            </VerticalStackLayout>
            
 
 
