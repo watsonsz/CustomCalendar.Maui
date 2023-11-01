@@ -1,3 +1,6 @@
+using CommunityToolkit.Mvvm.Input;
+using CustomCalendar.BusinessEntity;
+using CustomCalendar.DataAccess.Repositories;
 using CustomCalendar.ViewModels;
 
 namespace CustomCalendar.CustomViews;
@@ -60,5 +63,17 @@ public partial class MonthView : ContentView
             }
         }
     }
-   
+
+    
+    public void SaveMonth(Object sender, EventArgs e)
+    {
+        MonthEntity monthEntity = new MonthEntity
+        {
+            Year = _viewModel.MonthDateTime.Year.ToString(),
+            MonthName = _viewModel.CurrentMonth,
+            MonthID = _viewModel.Id
+        };
+        MonthRepository _repo = new MonthRepository();
+        _repo.SaveMonth(monthEntity);
+    }
 }

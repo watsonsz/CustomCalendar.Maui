@@ -17,6 +17,7 @@ namespace CustomCalendar.ViewModels
             this.CurrentMonth = DateTime.Now.ToString("MMMM");
             InitializeDayViews(this.MonthDateTime);
             Employees = new List<EmployeeEntity> { new EmployeeEntity("Zack"), new EmployeeEntity("Talaine") };
+            Id = Guid.NewGuid();
         }
 
         public MonthViewViewModel(int month)
@@ -28,9 +29,11 @@ namespace CustomCalendar.ViewModels
             this.MonthDateTime = selectedMonth;
             InitializeDayViews(selectedMonth);
             Employees = new List<EmployeeEntity> { new EmployeeEntity("Zack"), new EmployeeEntity("Talaine") };
+            Id = Guid.NewGuid();
         }
         #endregion
 
+        public Guid Id { get; set; }
         public DateTime MonthDateTime { get; set; }
         public string CurrentMonth {  get; set; }
         public List<DayViewModel> Days { get; set; }

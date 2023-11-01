@@ -119,6 +119,8 @@ VerticalOptions="Center"
                     SelectedItem="{Binding SelectedEmployee}"/>
                 <Button Text="Assign"
                         Command="{Binding AddEmployeeCommand}"/>
+                <Button Text="Save Schedule"
+                        Clicked="SaveMonth"/>
 
             </VerticalStackLayout>
                    

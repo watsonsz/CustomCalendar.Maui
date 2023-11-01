@@ -17,7 +17,7 @@ namespace CustomCalendar.ViewModels
             this.Date = date;
             //allEmployees = employeeBL.GetAll();
             DAYOFWEEKNUMBER = (int)Date.DayOfWeek;
-            firstshiftemployees = new ObservableCollection<EmployeeEntity> { new EmployeeEntity { Name = "zack" } };
+            firstshiftemployees = new ObservableCollection<EmployeeEntity> { new EmployeeEntity { FullName = "zack" } };
         }
         public string DayLabel { get => GetLabel();}
 
