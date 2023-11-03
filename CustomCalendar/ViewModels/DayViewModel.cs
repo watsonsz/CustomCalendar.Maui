@@ -17,20 +17,14 @@ namespace CustomCalendar.ViewModels
             this.Date = date;
             //allEmployees = employeeBL.GetAll();
             DAYOFWEEKNUMBER = (int)Date.DayOfWeek;
-            firstshiftemployees = new ObservableCollection<EmployeeEntity> { new EmployeeEntity { FullName = "zack" } };
+            
         }
         public string DayLabel { get => GetLabel();}
 
         public DateTime Date { get; set; }
-        public static string FIRST_SHIFT_START;
-        public static string FIRST_SHIFT_END;
-        public static string LAST_SHIFT_START;
-        public static string LAST_SHIFT_END;
-
-
-
+       
         public int DAYOFWEEKNUMBER { get; set; }
-        public ObservableCollection<string> AllEmployees { get; set; }
+
         public EmployeeEntity SelectedEmployee { get; set; }
 
         //These need to be done with employees instead of strings

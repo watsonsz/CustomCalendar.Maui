@@ -21,7 +21,7 @@ namespace CustomCalendar
             MainPanel.Clear();
             var check = DatePicked;
             var checkTwo = DatePicked.Month;
-            MainPanel.Add(new MonthView(checkTwo, DatePicked.Year));
+            MainPanel.Add(new MonthView(check));
         }
 
 

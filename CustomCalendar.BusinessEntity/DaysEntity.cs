@@ -10,11 +10,11 @@ namespace CustomCalendar.BusinessEntity
         public Guid MonthId { get; set; }
         public MonthEntity Month { get; set; }
 
-        public List<EmployeeShiftEntity> FirstShift { get; set; }
-        public List<EmployeeShiftEntity> SecondShift { get; set; }
-        public List<EmployeeShiftEntity> ThirdShift { get; set; }
-        public List<EmployeeShiftEntity> HouseKeeping { get; set; }
-        public List<EmployeeShiftEntity> KitchenStaff { get; set; }
+        public List<EmployeeEntity> FirstShift { get; set; }
+        public List<EmployeeEntity> SecondShift { get; set; }
+        public List<EmployeeEntity> ThirdShift { get; set; }
+        public List<EmployeeEntity> HouseKeeping { get; set; }
+        public List<EmployeeEntity> KitchenStaff { get; set; }
 
     }
 }

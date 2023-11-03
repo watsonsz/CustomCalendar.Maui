@@ -18,19 +18,15 @@ public partial class MonthView : ContentView
         CreateDayBlocks();
 	}
 
-
-    public MonthView(int month)
+    public MonthView(DateTime date)
     {
         InitializeComponent();
-        _viewModel = new MonthViewViewModel(month);
-        BindingContext = _viewModel;
-        CreateDayBlocks();
+        MonthRepository _repo = new MonthRepository();
+        var newMonthEntity = _repo.GetMonth(date.ToString("MMMM"), date.Year.ToString());
 
-    }
-    public MonthView(int month, int year)
-    {
-        InitializeComponent();
-        _viewModel = new MonthViewViewModel(month);
+        var newMonth = new MonthViewViewModel(newMonthEntity.MonthID, date, newMonthEntity.MonthName);
+
+        _viewModel = newMonth;
         BindingContext = _viewModel;
         CreateDayViewBlocks();
 
