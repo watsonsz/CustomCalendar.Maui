@@ -103,6 +103,26 @@ namespace CustomCalendar.ViewModels
             }
         }
 
+        public void SaveDays()
+        {
+            DayRepository _repo = new DayRepository();
+            List<DaysEntity> daysList = new List<DaysEntity>();
+            foreach (var day in Days)
+            {
+                var newDay = new DaysEntity
+                {
+                    DayDatetime = day.Date,
+                    MonthId = this.Id,
+                    FirstShift = day.Firstshiftemployees.ToList(),
+                    SecondShift = day.Secondshiftemployees.ToList(),
+                    ThirdShift = day.Lastshiftemployees.ToList(),
+                    HouseKeeping = day.Housekeeping.ToList(),
+                    KitchenStaff = day.Kitchenstaff.ToList(),
+                };
+                daysList.Add(newDay);
+            }
+            _repo.SaveDays(daysList);
+        }
         #endregion
     }
 }

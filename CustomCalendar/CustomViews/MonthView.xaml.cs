@@ -71,5 +71,6 @@ public partial class MonthView : ContentView
         };
         MonthRepository _repo = new MonthRepository();
         _repo.SaveMonth(monthEntity);
+        _viewModel.SaveDays();
     }
 }

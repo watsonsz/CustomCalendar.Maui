@@ -6,9 +6,7 @@ namespace CustomCalendar.BusinessEntity
     {
         public DateTime DayDatetime { get; set; }
 
-        [ForeignKey(nameof(MonthEntity))]
         public Guid MonthId { get; set; }
-        public MonthEntity Month { get; set; }
 
         public List<EmployeeEntity> FirstShift { get; set; }
         public List<EmployeeEntity> SecondShift { get; set; }
