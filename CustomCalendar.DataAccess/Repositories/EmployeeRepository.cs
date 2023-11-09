@@ -10,9 +10,14 @@ namespace CustomCalendar.DataAccess.Repositories
     public class EmployeeRepository
     {
         private string connectionString;
-        public EmployeeRepository()
+        public EmployeeRepository(string connectionString)
         {
-            connectionString = "Data Source=localhost;Initial Catalog=CustomCalendar;Integrated Security=True";
+            this.connectionString = connectionString;
+        }
+
+        public List<EmployeeEntity> GetEmployeesFromList(List<EmployeeShiftEntity> employeeList)
+        {
+            throw new NotImplementedException();
         }
 
         internal EmployeeEntity GetEmployeeById(Guid employeeId)

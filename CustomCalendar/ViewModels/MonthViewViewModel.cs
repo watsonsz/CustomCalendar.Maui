@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using CustomCalendar.BusinessEntity;
 using CustomCalendar.DataAccess.Repositories;
+using CustomCalendar.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -41,8 +42,9 @@ namespace CustomCalendar.ViewModels
         #region Methods
         private void InitializeDayViews(DateTime selectedMonth)
         {
-            var _repo = new DayRepository();
-            var daysResults = _repo.GetDaysForMonth(Id);
+            var _repo = new DataAccessHelper();
+            var daysResults = _repo.BuildDays(Id);
+
             //need at this point to get lists
             
             Days = new List<DayViewModel>();
@@ -52,31 +54,12 @@ namespace CustomCalendar.ViewModels
             }
             else
             {
-                foreach(var day in daysResults)
-                {
-                    var newDay = new DayViewModel(day.DayDatetime)
-                    {
-                        Firstshiftemployees = GenerateObservableCollection(day.FirstShift),
-                        Secondshiftemployees= GenerateObservableCollection(day.SecondShift),
-                        Lastshiftemployees = GenerateObservableCollection(day.ThirdShift),
-                        Housekeeping = GenerateObservableCollection(day.HouseKeeping),
-                        Kitchenstaff = GenerateObservableCollection(day.KitchenStaff)
-                    };
-                    Days.Add(newDay);
-                }
+                Days = daysResults;
             }
                
         }
 
-        private ObservableCollection<EmployeeEntity> GenerateObservableCollection(List<EmployeeEntity> employees)
-        {
-            var returnList = new ObservableCollection<EmployeeEntity>();
-            foreach (var employee in employees)
-            {
-                returnList.Add(employee);
-            }
-            return returnList;
-        }
+        
 
         private void CreateNewDays(DateTime selectedMonth)
         {
@@ -105,7 +88,7 @@ namespace CustomCalendar.ViewModels
 
         public void SaveDays()
         {
-            DayRepository _repo = new DayRepository();
+            DayRepository _repo = new DayRepository("CHANGE");
             List<DaysEntity> daysList = new List<DaysEntity>();
             foreach (var day in Days)
             {
