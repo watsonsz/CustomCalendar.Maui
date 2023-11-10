@@ -9,9 +9,9 @@ namespace CustomCalendar.BusinessEntity
     public class EmployeeEntity
     {
         public EmployeeEntity() { Id = Guid.NewGuid(); }
-        public EmployeeEntity(string name)
+        public EmployeeEntity(string name, Guid id)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             this.FullName = name;
         }
 
