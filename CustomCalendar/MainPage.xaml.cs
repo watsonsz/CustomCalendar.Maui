@@ -1,4 +1,5 @@
-﻿using CustomCalendar.CustomViews;
+﻿using CommunityToolkit.Mvvm.Input;
+using CustomCalendar.CustomViews;
 
 namespace CustomCalendar
 {
@@ -10,19 +11,15 @@ namespace CustomCalendar
         {
             InitializeComponent();
             BindingContext = this;
-            DatePicker.Date = new DateTime(DateTime.Now.Year,DateTime.Now.Month, DateTime.Now.Day);
+            
         }
 
-        public DateTime DatePicked { get; set; }
-
-        //This needs to go to SchedulePage.xaml.cs
-        private void CreateCalendar(Object sender, EventArgs e)
+        [RelayCommand]
+        async Task Click(string s)
         {
-            MainPanel.Clear();
-            var check = DatePicked;
-            var checkTwo = DatePicked.Month;
-            MainPanel.Add(new MonthView(check));
+            await Shell.Current.GoToAsync(s);
         }
+        
 
 
     }

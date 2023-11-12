@@ -21,6 +21,7 @@ namespace CustomCalendar.DataAccess.Repositories
         {
             connectionString = "Data Source=localhost;Initial Catalog=CustomCalendar;Integrated Security=True";
         }
+
         public List<EmployeeEntity> GetEmployeesFromList(List<EmployeeShiftEntity> employeeList)
         {
             List<EmployeeEntity> newEmployeeList = new List<EmployeeEntity>();
@@ -81,7 +82,7 @@ namespace CustomCalendar.DataAccess.Repositories
                 {
                     SqlCommand command = new SqlCommand
                     {
-                        CommandText = @"INSERT INTO dbo.Employee
+                        CommandText = @"INSERT INTO dbo.Employees
                                         Values(@Id, @Name, @Phone,@Address,@Hours,@Active)",
                         Connection = connection
                     };
@@ -89,8 +90,8 @@ namespace CustomCalendar.DataAccess.Repositories
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = employeeEntity.FullName;
                     command.Parameters.Add("@Phone", SqlDbType.NVarChar).Value = employeeEntity.PhoneNumber;
                     command.Parameters.Add("@Address", SqlDbType.NVarChar).Value = employeeEntity.Address;
-                    command.Parameters.Add("@Hours", SqlDbType.Binary).Value = employeeEntity.WantsMoreHours;
-                    command.Parameters.Add("@Active", SqlDbType.Binary).Value = employeeEntity.IsActive;
+                    command.Parameters.Add("@Hours", SqlDbType.Binary).Value = BitConverter.GetBytes(employeeEntity.WantsMoreHours);
+                    command.Parameters.Add("@Active", SqlDbType.Binary).Value = BitConverter.GetBytes(employeeEntity.IsActive);
 
                     connection.Open();
                     int rowsAffected = command.ExecuteNonQuery();

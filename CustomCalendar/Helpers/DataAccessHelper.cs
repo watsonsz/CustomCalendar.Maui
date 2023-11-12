@@ -38,40 +38,50 @@ namespace CustomCalendar.Helpers
             List<DayViewModel> viewModelList = new List<DayViewModel>();
             //GetDays
             var days = _dayRepo.GetDaysForMonth(MonthId);
-            //GetShifts
-            foreach(var day in days)
+
+            if(days == null)
             {
-                var employeeList = _shiftRepo.GetEmployeeShiftEntities(day.DayDatetime, FIRST_SHIFT);
-                day.FirstShift = _employeeRepo.GetEmployeesFromList(employeeList);
-
-                employeeList = _shiftRepo.GetEmployeeShiftEntities(day.DayDatetime, SECOND_SHIFT);
-                day.SecondShift = _employeeRepo.GetEmployeesFromList(employeeList);
-
-                employeeList = _shiftRepo.GetEmployeeShiftEntities(day.DayDatetime, LAST_SHIFT);
-                day.ThirdShift = _employeeRepo.GetEmployeesFromList(employeeList);
-
-                employeeList = _shiftRepo.GetEmployeeShiftEntities(day.DayDatetime, HOUSEKEEPING);
-                day.HouseKeeping = _employeeRepo.GetEmployeesFromList(employeeList);
-
-                employeeList = _shiftRepo.GetEmployeeShiftEntities(day.DayDatetime, KITCHEN);
-                day.KitchenStaff = _employeeRepo.GetEmployeesFromList(employeeList);
-
+                return null;
             }
-
-            //Create ViewModel
-            foreach (var day in days)
+            else
             {
-                var newDay = new DayViewModel(day.DayDatetime)
+                //GetShifts
+                foreach (var day in days)
                 {
-                    Firstshiftemployees = GenerateObservableCollection(day.FirstShift),
-                    Secondshiftemployees = GenerateObservableCollection(day.SecondShift),
-                    Lastshiftemployees = GenerateObservableCollection(day.ThirdShift),
-                    Housekeeping = GenerateObservableCollection(day.HouseKeeping),
-                    Kitchenstaff = GenerateObservableCollection(day.KitchenStaff)
-                };
-                viewModelList.Add(newDay);
+                    var employeeList = _shiftRepo.GetEmployeeShiftEntities(day.DayDatetime, FIRST_SHIFT);
+                    day.FirstShift = _employeeRepo.GetEmployeesFromList(employeeList);
+
+                    employeeList = _shiftRepo.GetEmployeeShiftEntities(day.DayDatetime, SECOND_SHIFT);
+                    day.SecondShift = _employeeRepo.GetEmployeesFromList(employeeList);
+
+                    employeeList = _shiftRepo.GetEmployeeShiftEntities(day.DayDatetime, LAST_SHIFT);
+                    day.ThirdShift = _employeeRepo.GetEmployeesFromList(employeeList);
+
+                    employeeList = _shiftRepo.GetEmployeeShiftEntities(day.DayDatetime, HOUSEKEEPING);
+                    day.HouseKeeping = _employeeRepo.GetEmployeesFromList(employeeList);
+
+                    employeeList = _shiftRepo.GetEmployeeShiftEntities(day.DayDatetime, KITCHEN);
+                    day.KitchenStaff = _employeeRepo.GetEmployeesFromList(employeeList);
+
+                }
+
+                //Create ViewModel
+                foreach (var day in days)
+                {
+                    var newDay = new DayViewModel(day.DayDatetime)
+                    {
+                        Firstshiftemployees = GenerateObservableCollection(day.FirstShift),
+                        Secondshiftemployees = GenerateObservableCollection(day.SecondShift),
+                        Lastshiftemployees = GenerateObservableCollection(day.ThirdShift),
+                        Housekeeping = GenerateObservableCollection(day.HouseKeeping),
+                        Kitchenstaff = GenerateObservableCollection(day.KitchenStaff)
+                    };
+                    viewModelList.Add(newDay);
+                }
+                return viewModelList;
             }
-            return viewModelList;
+            
+           
         }
 
         private ObservableCollection<EmployeeEntity> GenerateObservableCollection(List<EmployeeEntity> employees)

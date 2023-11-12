@@ -52,7 +52,7 @@ public partial class MonthView : ContentView
         foreach(var day in _viewModel.Days)
         {
             int column = (int)day.Date.DayOfWeek;
-            MonthLayout.Add(new DayView(day), column, row);
+            MonthLayout.Add(new ViewDayView(day), column, row);
             if(column == 6)
             {
                 row++;
