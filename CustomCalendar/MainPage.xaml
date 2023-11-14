@@ -24,7 +24,7 @@
                     <TapGestureRecognizer Command="{Binding ClickCommand}"
         CommandParameter="EmployeeManagementPage"/>
                 </Frame.GestureRecognizers>
-                <Label Text="Schedule Management Page"/>
+                <Label Text="Employee Management Page"/>
             </Frame>
         </VerticalStackLayout>
     </ScrollView>

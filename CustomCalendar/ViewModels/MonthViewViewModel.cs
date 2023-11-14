@@ -25,6 +25,8 @@ namespace CustomCalendar.ViewModels
             this.MonthDateTime = date;
             this.CurrentMonth = monthName;
             InitializeDayViews(MonthDateTime);
+            var _empRepo = new EmployeeRepository();
+            this.Employees = _empRepo.GetAllEmployees();
             //Need to Get All Employees
         }
         #endregion

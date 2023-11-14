@@ -103,5 +103,46 @@ namespace CustomCalendar.DataAccess.Repositories
                 Console.WriteLine(ex.Message);
             }
         }
+
+        public List<EmployeeEntity> GetAllEmployees()
+        {
+            List<EmployeeEntity> employees = new List<EmployeeEntity>();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand
+                    {
+                        CommandText = "SELECT * FROM dbo.Employees",
+
+                        Connection = connection
+                    };
+                    
+
+
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    
+                    while (reader.Read())
+                    {
+                        EmployeeEntity employeeEntity = new EmployeeEntity((string)reader["FullName"], (Guid)reader["Id"]);
+                        employeeEntity.PhoneNumber = (string)reader["PhoneNumber"];
+                        employeeEntity.Address = (string)reader["Address"];
+                        employeeEntity.HasPTO = false;
+                        employeeEntity.WantsMoreHours = (bool)reader["MoreHours"];
+                        employeeEntity.IsActive = (bool)reader["IsActive"];
+
+                        employees.Add(employeeEntity);
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return employees;
+        }
     }
 }
