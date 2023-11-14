@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CustomCalendar.SchedulePage"
              xmlns:viewmodel ="clr-namespace:CustomCalendar"
-             x:DataType ="viewmodel:MainPage"
+             x:DataType ="viewmodel:SchedulePage"
              Title="SchedulePage">
     <VerticalStackLayout
         x:Name="MainPanel">

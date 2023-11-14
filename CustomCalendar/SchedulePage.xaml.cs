@@ -16,7 +16,9 @@ public partial class SchedulePage : ContentPage
     //This needs to go to SchedulePage.xaml.cs
     private void CreateCalendar(Object sender, EventArgs e)
     {
-        var checkTwo = DatePicked;
-        MainPanel.Add(new MonthView(checkTwo));
+        MainPanel.Clear();
+        var check = DatePicked;
+        var checkTwo = DatePicked.Month;
+        MainPanel.Add(new MonthView(check));
     }
 }

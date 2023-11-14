@@ -48,7 +48,7 @@ namespace CustomCalendar.ViewModels
             //need at this point to get lists
             
             Days = new List<DayViewModel>();
-            if(daysResults.Count <= 1)
+            if (daysResults == null) 
             {
                 CreateNewDays(selectedMonth);
             }

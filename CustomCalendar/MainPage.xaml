@@ -11,32 +11,21 @@
         <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
-            VerticalOptions="Start">
-            <!--This grid needs to go into the Schdeule Page.xaml-->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <DatePicker x:Name="DatePicker"
-                        MinimumDate="01/01/2022"
-                        MaximumDate="01/01/2029"
-                        Date="{Binding DatePicked}"
-                        Grid.Column="0"/>           
-                    <Button Text="Go"
-                        Clicked="CreateCalendar"
-                            Grid.Column="1"/>
-                </Grid>
-            <VerticalStackLayout
-                x:Name="MainPanel"
-Spacing="25"
-Padding="30,0"
-VerticalOptions="Start">
-                
-            </VerticalStackLayout>
-           
-
-
+            VerticalOptions="Center">
+            <Frame>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ClickCommand}"
+                    CommandParameter="SchedulePage"/>
+                </Frame.GestureRecognizers>
+                <Label Text="Schedule Management Page"/>
+            </Frame>
+            <Frame>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ClickCommand}"
+        CommandParameter="EmployeeManagementPage"/>
+                </Frame.GestureRecognizers>
+                <Label Text="Schedule Management Page"/>
+            </Frame>
         </VerticalStackLayout>
     </ScrollView>
 
