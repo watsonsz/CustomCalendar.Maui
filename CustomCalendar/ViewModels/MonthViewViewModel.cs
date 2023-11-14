@@ -24,10 +24,12 @@ namespace CustomCalendar.ViewModels
             this.Id = id;
             this.MonthDateTime = date;
             this.CurrentMonth = monthName;
+            this.EmployeeDatePicked = date;
             InitializeDayViews(MonthDateTime);
             var _empRepo = new EmployeeRepository();
             this.Employees = _empRepo.GetAllEmployees();
             //Need to Get All Employees
+            ShiftSelect = 1;
         }
         #endregion
 
@@ -36,6 +38,7 @@ namespace CustomCalendar.ViewModels
         public string CurrentMonth {  get; set; }
         public List<DayViewModel> Days { get; set; }
         public List<EmployeeEntity> Employees { get; set; }
+        public int ShiftSelect { get; set; }
 
 
         public DateTime EmployeeDatePicked { get; set; }
@@ -83,7 +86,19 @@ namespace CustomCalendar.ViewModels
                 if(day.Date == EmployeeDatePicked)
                 {
                     //need to define a shift
-                    day.Firstshiftemployees.Add(SelectedEmployee);
+                    switch (ShiftSelect)
+                    {
+                        case 1:
+                            day.Firstshiftemployees.Add(SelectedEmployee);
+                            break;
+                        case 2:
+                            day.Secondshiftemployees.Add(SelectedEmployee);
+                            break;
+                        case 3:
+                            day.Lastshiftemployees.Add(SelectedEmployee);
+                            break;
+                    }
+
                 }
             }
         }
