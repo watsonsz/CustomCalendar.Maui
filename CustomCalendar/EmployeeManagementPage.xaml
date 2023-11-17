@@ -3,13 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CustomCalendar.EmployeeManagementPage"
              xmlns:viewmodel ="clr-namespace:CustomCalendar.ViewModels"
-             Title="EmployeeManagementPage"
-             x:DataType="viewmodel:EmployeeManagementViewModel">
+             Title="Employees"
+             x:DataType="viewmodel:EmployeeManagementViewModel">    
+    
+    <!--Need this as a pop-out, then list of employees on the page-->
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            Text="Active Employees:"
+            TextColor="MidnightBlue"
+            VerticalOptions="Start" 
+            HorizontalOptions="Start"
+            FontSize="Medium"/>
+        <!--Need placeholder for employee # and what shift they work-->
+        <!--Need labels for checkboxes-->
         <Entry Placeholder="Name" Text="{Binding FullName}"/>
         <Entry Placeholder="PhoneNumber" Text="{Binding PhoneNumber}"/>
         <Entry Placeholder="Address" Text="{Binding Address}"/>

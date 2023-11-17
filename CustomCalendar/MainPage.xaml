@@ -17,14 +17,17 @@
                     <TapGestureRecognizer Command="{Binding ClickCommand}"
                     CommandParameter="SchedulePage"/>
                 </Frame.GestureRecognizers>
-                <Label Text="Schedule Management Page"/>
+                <Label Text="New Schedule"/>
+                <!--Want this as a popup instead of new page
+                Also want current/previous schdule and pto/ot
+                These on the flyout menu on left--> 
             </Frame>
             <Frame>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ClickCommand}"
         CommandParameter="EmployeeManagementPage"/>
                 </Frame.GestureRecognizers>
-                <Label Text="Employee Management Page"/>
+                <Label Text="Employees"/>
             </Frame>
         </VerticalStackLayout>
     </ScrollView>

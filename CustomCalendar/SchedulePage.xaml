@@ -4,9 +4,12 @@
              x:Class="CustomCalendar.SchedulePage"
              xmlns:viewmodel ="clr-namespace:CustomCalendar"
              x:DataType ="viewmodel:SchedulePage"
-             Title="SchedulePage">
+             Title="New Schedule">
     <VerticalStackLayout
         x:Name="MainPanel">
+        
+        <!--When click new schedule on main page, calendar should pop up to pick
+        Then take you to current/previous page with calendar choices-->
        
         <Grid>
             <Grid.ColumnDefinitions>
