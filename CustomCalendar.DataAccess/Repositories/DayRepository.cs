@@ -64,8 +64,7 @@ namespace CustomCalendar.DataAccess.Repositories
         public void SaveDays(List<DaysEntity> daysList)
         {
             //save day entities
-            //generate linking tables
-            //save linking
+            
         }
     }
 }
