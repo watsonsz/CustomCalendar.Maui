@@ -59,5 +59,10 @@ namespace CustomCalendar.DataAccess.Repositories
             }
             return IdList;
         }
+
+        public void SaveList(List<EmployeeShiftEntity> shiftList)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

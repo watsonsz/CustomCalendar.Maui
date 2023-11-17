@@ -11,9 +11,9 @@
         <Border Stroke="white">
             <VerticalStackLayout>
                 <Label 
-        Text="{Binding DayLabel}"
-        VerticalOptions="Center" 
-        HorizontalOptions="Center" />
+                Text="{Binding DayLabel}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />   
                 <Label
                     x:Name="FirstShift"
                     Text="First Shift"

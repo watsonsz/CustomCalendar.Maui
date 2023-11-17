@@ -93,5 +93,37 @@ namespace CustomCalendar.Helpers
             }
             return returnList;
         }
+
+        public void SaveDays(List<DaysEntity> daysList)
+        {
+            _dayRepo.SaveDays(daysList);
+            foreach(var day in daysList)
+            {
+                // foreach Gen list and save
+                var firstShift = GenerateLinkingLists(day.FirstShift, FIRST_SHIFT, day.DayDatetime);
+                SaveLinkingList(firstShift);
+                var secondShift = GenerateLinkingLists(day.SecondShift, SECOND_SHIFT, day.DayDatetime);
+                SaveLinkingList(secondShift);
+                var thirdShift = GenerateLinkingLists(day.ThirdShift,LAST_SHIFT, day.DayDatetime);
+                SaveLinkingList(thirdShift);
+                var houseKeeping = GenerateLinkingLists(day.HouseKeeping, HOUSEKEEPING, day.DayDatetime);
+                SaveLinkingList(houseKeeping);
+                var kitchen = GenerateLinkingLists(day.KitchenStaff, KITCHEN, day.DayDatetime);
+                SaveLinkingList(kitchen);
+
+            }
+        }
+        public List<EmployeeShiftEntity> GenerateLinkingLists(List<EmployeeEntity> employees, int shiftType, DateTime day)
+        {
+            List<EmployeeShiftEntity> shiftList = new List<EmployeeShiftEntity>();
+
+
+            return shiftList;
+        }
+
+        public void SaveLinkingList(List<EmployeeShiftEntity> shiftList)
+        {
+            _shiftRepo.SaveList(shiftList);
+        }
     }
 }
