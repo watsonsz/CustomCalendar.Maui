@@ -23,18 +23,18 @@ namespace CustomCalendar.DataAccess.Repositories
 
         public List<DaysEntity> GetDaysForMonth(Guid monthId)
         {
-            List<DaysEntity> daysList = null;
+            List<DaysEntity> daysList = new List<DaysEntity>();
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand
                     {
-                        CommandText = "SELECT * FROM dbo.Days WHERE [MonthId] = @MonthId",
+                        CommandText = "SELECT * FROM dbo.Days WHERE MonthId = @MonthId",
 
                         Connection = connection
                     };
-                    command.Parameters.Add(new SqlParameter("@Month", SqlDbType.UniqueIdentifier) { Value = monthId});
+                    command.Parameters.Add(new SqlParameter("@MonthId", SqlDbType.UniqueIdentifier) { Value = monthId});
 
                     connection.Open();
 
@@ -64,7 +64,31 @@ namespace CustomCalendar.DataAccess.Repositories
         public void SaveDays(List<DaysEntity> daysList)
         {
             //save day entities
-            
+            foreach (var day in daysList) {
+                try
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        SqlCommand command = new SqlCommand
+                        {
+                            CommandText = "INSERT INTO dbo.Days Values(@DayDate, @Month)",
+
+                            Connection = connection
+                        };
+                        command.Parameters.AddWithValue("@DayDate", day.DayDatetime);
+                        command.Parameters.AddWithValue("@Month", day.MonthId);
+
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                                            
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                        Console.WriteLine(ex.Message);
+                }
+            }
         }
     }
 }

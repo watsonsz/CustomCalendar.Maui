@@ -105,7 +105,8 @@ namespace CustomCalendar.ViewModels
 
         public void SaveDays()
         {
-            DayRepository _repo = new DayRepository("CHANGE");
+            DataAccessHelper _newRepo = new DataAccessHelper();
+
             List<DaysEntity> daysList = new List<DaysEntity>();
             foreach (var day in Days)
             {
@@ -121,7 +122,7 @@ namespace CustomCalendar.ViewModels
                 };
                 daysList.Add(newDay);
             }
-            _repo.SaveDays(daysList);
+            _newRepo.SaveDays(daysList);
         }
         #endregion
     }

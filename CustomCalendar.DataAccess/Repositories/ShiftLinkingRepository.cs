@@ -32,7 +32,7 @@ namespace CustomCalendar.DataAccess.Repositories
 
                         Connection = connection
                     };
-                    command.Parameters.Add(new SqlParameter("@Day", SqlDbType.UniqueIdentifier) { Value = dayDatetime });
+                    command.Parameters.Add(new SqlParameter("@Day", SqlDbType.DateTime) { Value = dayDatetime });
                     command.Parameters.Add(new SqlParameter("@Shift", SqlDbType.Int) { Value = shiftId });
 
                     connection.Open();
@@ -62,7 +62,30 @@ namespace CustomCalendar.DataAccess.Repositories
 
         public void SaveList(List<EmployeeShiftEntity> shiftList)
         {
-            throw new NotImplementedException();
+            foreach(EmployeeShiftEntity entity in shiftList)
+            {
+                try
+                {
+                    using(SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        SqlCommand command = new SqlCommand
+                        {
+                            CommandText = "INSERT INTO dbo.ShiftLinkingTable Values(@DayDate, @Id, @Shift)",
+                            Connection = connection
+                        };
+                        command.Parameters.AddWithValue("@DayDate", entity.DayDatetime);
+                        command.Parameters.AddWithValue("@Id", entity.EmployeeId);
+                        command.Parameters.AddWithValue("@Shift", entity.ShiftType);
+
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
         }
     }
 }

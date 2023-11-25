@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -96,19 +97,34 @@ namespace CustomCalendar.Helpers
 
         public void SaveDays(List<DaysEntity> daysList)
         {
+            //Check for exists
             _dayRepo.SaveDays(daysList);
             foreach(var day in daysList)
             {
                 // foreach Gen list and save
                 var firstShift = GenerateLinkingLists(day.FirstShift, FIRST_SHIFT, day.DayDatetime);
+
+                //Check for exists
                 SaveLinkingList(firstShift);
+
                 var secondShift = GenerateLinkingLists(day.SecondShift, SECOND_SHIFT, day.DayDatetime);
+
+                //Check for exists
                 SaveLinkingList(secondShift);
+
                 var thirdShift = GenerateLinkingLists(day.ThirdShift,LAST_SHIFT, day.DayDatetime);
+
+                //Check for exists
                 SaveLinkingList(thirdShift);
+
                 var houseKeeping = GenerateLinkingLists(day.HouseKeeping, HOUSEKEEPING, day.DayDatetime);
+
+                //Check for exists
                 SaveLinkingList(houseKeeping);
+
                 var kitchen = GenerateLinkingLists(day.KitchenStaff, KITCHEN, day.DayDatetime);
+
+                //Check for exists
                 SaveLinkingList(kitchen);
 
             }
@@ -116,7 +132,17 @@ namespace CustomCalendar.Helpers
         public List<EmployeeShiftEntity> GenerateLinkingLists(List<EmployeeEntity> employees, int shiftType, DateTime day)
         {
             List<EmployeeShiftEntity> shiftList = new List<EmployeeShiftEntity>();
+            foreach(EmployeeEntity employee in employees)
+            {
+                var newEntry = new EmployeeShiftEntity
+                {
+                    DayDatetime = day,
+                    ShiftType = shiftType,
+                    EmployeeId = employee.Id
+                };
 
+                shiftList.Add(newEntry);
+            }
 
             return shiftList;
         }

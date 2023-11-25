@@ -70,6 +70,8 @@ public partial class MonthView : ContentView
             MonthID = _viewModel.Id
         };
         MonthRepository _repo = new MonthRepository();
+        //TODO Check Exists then update
+
         _repo.SaveMonth(monthEntity);
         _viewModel.SaveDays();
     }
