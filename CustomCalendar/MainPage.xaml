@@ -12,6 +12,15 @@
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Column1" Grid.Column="0"/>
+                <Label Text="Column2" Grid.Column="1"/>
+                <!--This is where I want options on the left and Mulherin logo on rt-->
+            </Grid>
             <Frame>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ClickCommand}"

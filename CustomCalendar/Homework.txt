@@ -2,3 +2,4 @@
 2: Create Domain, DTO, 
 3: Create a more suitable Main Page and implement navigation(reccomend flyout)
 4: Make colors dynamic
+5: Need to add employees to database
