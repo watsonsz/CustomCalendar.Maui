@@ -58,9 +58,14 @@
               
                 <!--#region Main Panel-->
                 <VerticalStackLayout>
-                                        
+                    <Grid>
+                        <Frame Grid.Column="1">
+                        <Image Source="mulherinlogo.svg"/>
+                        </Frame>
+                    </Grid>
                 </VerticalStackLayout>
-                <!--#endregion-->
+                    
+            <!--#endregion-->
                 
             </Grid>
             
