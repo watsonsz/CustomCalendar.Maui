@@ -19,9 +19,23 @@
         <Entry Placeholder="Name" Text="{Binding FullName}"/>
         <Entry Placeholder="PhoneNumber" Text="{Binding PhoneNumber}"/>
         <Entry Placeholder="Address" Text="{Binding Address}"/>
-        <CheckBox IsChecked="{Binding HasPTO}"/>
-        <CheckBox IsChecked="{Binding WantsMoreHours}"/>
-        <CheckBox IsChecked="{Binding IsActive}"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Text="HasPTO"/>
+            <Label Grid.Row="1" Grid.Column="0" Text="Wants More Hours"/>
+            <Label Grid.Row="2" Grid.Column="0" Text="IsActive"/>
+            <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding HasPTO}"/>
+            <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding WantsMoreHours}"/>
+            <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding IsActive}"/>
+        </Grid>
         <Button Text="Save" Command="{Binding SaveEmployeeCommand}"/>
     </VerticalStackLayout>
 </ContentPage>
