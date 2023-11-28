@@ -58,6 +58,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\mulherinlogo.JPG" />
+	  <None Remove="Resources\Images\mulherinlogo.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
