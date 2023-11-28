@@ -40,7 +40,7 @@ namespace CustomCalendar.Helpers
             //GetDays
             var days = _dayRepo.GetDaysForMonth(MonthId);
 
-            if(days == null)
+            if(days == null || days.Count <= 0)
             {
                 return null;
             }
