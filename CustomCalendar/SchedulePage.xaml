@@ -17,12 +17,12 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <DatePicker x:Name="DatePicker"
-        MinimumDate="01/01/2022"
-        MaximumDate="01/01/2029"
-        Date="{Binding DatePicked}"
-        Grid.Column="0"/>
-            <Button Text="Go"
-        Clicked="CreateCalendar"
+             MinimumDate="01/01/2022"
+             MaximumDate="01/01/2029"
+             Date="{Binding DatePicked}"
+             Grid.Column="0"/>
+            <Button Text="Create"
+            Clicked="CreateCalendar"
             Grid.Column="1"/>
         </Grid>
 

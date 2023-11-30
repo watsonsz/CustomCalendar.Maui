@@ -9,7 +9,7 @@
     <!--Need this as a pop-out, then list of employees on the page-->
     <VerticalStackLayout>
         <Label 
-            Text="Active Employees:"
+            Text="Add New Employees:"
             TextColor="MidnightBlue"
             VerticalOptions="Start" 
             HorizontalOptions="Start"
@@ -29,13 +29,16 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Text="HasPTO"/>
-            <Label Grid.Row="1" Grid.Column="0" Text="Wants More Hours"/>
-            <Label Grid.Row="2" Grid.Column="0" Text="IsActive"/>
+            <Label Grid.Row="0" Grid.Column="0" Text="Time Off Requested"/>
+            <Label Grid.Row="1" Grid.Column="0" Text="Available for OT"/>
+            <Label Grid.Row="2" Grid.Column="0" Text="Active"/>
             <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding HasPTO}"/>
             <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding WantsMoreHours}"/>
             <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding IsActive}"/>
         </Grid>
         <Button Text="Save" Command="{Binding SaveEmployeeCommand}"/>
+        <Grid>
+            <Label Grid.Row="3" Grid.Column="3" Text="Active Employees:" FontSize="Medium"/>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

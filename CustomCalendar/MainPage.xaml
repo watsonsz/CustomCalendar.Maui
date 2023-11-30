@@ -7,38 +7,28 @@
 
     <Grid RowDefinitions="75, 75, 75, 75"
           ColumnDefinitions=".25*, .75*"
-          Padding="10"
+          Padding="20"
           RowSpacing="10"
-          ColumnSpacing="10">               
-
-        <Image Grid.ColumnSpan="3"
-                 Source="mulherinlogo.png" Scale="4" 
-                 HorizontalOptions="Center" 
-                 VerticalOptions="Center"/>
+          ColumnSpacing="10">           
         
-        <Label Text="Auto-Scheduler Scheduling Application" 
-               BackgroundColor="Transparent" 
-               HorizontalOptions="Center" />      
-
-
         <Frame Grid.Row="2">
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding ClickCommand}"
-            CommandParameter="SchedulePage"/>
+                CommandParameter="SchedulePage"/>
             </Frame.GestureRecognizers>
             <Label Text="New Schedule"/>
         </Frame>
         <Frame Grid.Row="0">
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding ClickCommand}"
-            CommandParameter="EmployeeManagementPage"/>
+                CommandParameter="EmployeeManagementPage"/>
             </Frame.GestureRecognizers>
             <Label Text="Employees"/>
         </Frame>
         <Frame Grid.Row="1">
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding ClickCommand}"
-    CommandParameter="EmployeeManagementPage"/>
+                CommandParameter="EmployeeManagementPage"/>
             </Frame.GestureRecognizers>
             <Label Text="PTO/OT"/>
         </Frame>
@@ -46,10 +36,20 @@
         <Frame Grid.Row="3">
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding ClickCommand}"
-CommandParameter="SchedulePage"/>
+                CommandParameter="SchedulePage"/>
             </Frame.GestureRecognizers>
             <Label Text="Current/Previous Schedules"/>
         </Frame>
+
+        <Image Grid.ColumnSpan="3"
+         Source="mulherinlogo.png" Scale="4" 
+         HorizontalOptions="Center" 
+         VerticalOptions="Center"/>
+
+        <!--<Label Text="Auto-Scheduler Scheduling Application" 
+       BackgroundColor="Transparent" 
+       HorizontalOptions="End" />-->
+
     </Grid>
 
 </ContentPage>
