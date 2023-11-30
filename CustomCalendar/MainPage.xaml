@@ -41,10 +41,12 @@
             <Label Text="Current/Previous Schedules"/>
         </Frame>
 
-        <Image Grid.ColumnSpan="3"
-         Source="mulherinlogo.png" Scale="4" 
-         HorizontalOptions="Center" 
-         VerticalOptions="Center"/>
+        <Image Source="mulherinlogo.png"
+               HorizontalOptions="Center"
+               Grid.Column="1"
+               Grid.Row="5"
+               Scale="4"/>
+
 
         <!--<Label Text="Auto-Scheduler Scheduling Application" 
        BackgroundColor="Transparent" 

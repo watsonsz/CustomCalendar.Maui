@@ -31,7 +31,7 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Text="Time Off Requested"/>
             <Label Grid.Row="1" Grid.Column="0" Text="Available for OT"/>
-            <Label Grid.Row="2" Grid.Column="0" Text="Active"/>
+            <Label Grid.Row="2" Grid.Column="0" Text="Check if Active"/>
             <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding HasPTO}"/>
             <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding WantsMoreHours}"/>
             <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding IsActive}"/>
