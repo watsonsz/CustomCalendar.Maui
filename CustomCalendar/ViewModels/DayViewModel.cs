@@ -74,5 +74,32 @@ namespace CustomCalendar.ViewModels
                 }
             }
         }
+
+        internal bool CheckIfAssigned(Guid id)
+        {
+            var masterList = Firstshiftemployees;
+            bool assigned = false;
+            foreach(var employee in Secondshiftemployees)
+            {
+                masterList.Add(employee);
+            }
+            foreach(var employee in Lastshiftemployees)
+            {
+                masterList.Add(employee);
+            }
+            foreach (var employee in Kitchenstaff) { masterList.Add(employee); }
+            foreach( var employee in Housekeeping) { masterList.Add(employee); }
+
+            foreach (var employee in masterList)
+            {
+                if (employee.Id == id)
+                {
+                    assigned = true;
+                }
+                else { assigned = false; }
+            }
+
+            return assigned;
+        }
     }
 }

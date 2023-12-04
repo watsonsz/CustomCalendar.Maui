@@ -2,43 +2,85 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CustomCalendar.EmployeeManagementPage"
+             xmlns:model ="clr-namespace:CustomCalendar.BusinessEntity;assembly=CustomCalendar.BusinessEntity"
              xmlns:viewmodel ="clr-namespace:CustomCalendar.ViewModels"
              Title="Employees"
              x:DataType="viewmodel:EmployeeManagementViewModel">    
     
     <!--Need this as a pop-out, then list of employees on the page-->
-    <VerticalStackLayout>
-        <Label 
-            Text="Add New Employees:"
-            TextColor="MidnightBlue"
-            VerticalOptions="Start" 
-            HorizontalOptions="Start"
-            FontSize="Medium"/>
-        <!--Need placeholder for employee # and what shift they work-->
-        <!--Need labels for checkboxes-->
-        <Entry Placeholder="Name" Text="{Binding FullName}"/>
-        <Entry Placeholder="PhoneNumber" Text="{Binding PhoneNumber}"/>
-        <Entry Placeholder="Address" Text="{Binding Address}"/>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Text="Time Off Requested"/>
-            <Label Grid.Row="1" Grid.Column="0" Text="Available for OT"/>
-            <Label Grid.Row="2" Grid.Column="0" Text="Check if Active"/>
-            <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding HasPTO}"/>
-            <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding WantsMoreHours}"/>
-            <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding IsActive}"/>
-        </Grid>
-        <Button Text="Save" Command="{Binding SaveEmployeeCommand}"/>
-        <Grid>
-            <Label Grid.Row="3" Grid.Column="3" Text="Active Employees:" FontSize="Medium"/>
-        </Grid>
+    <ScrollView>
+    <VerticalStackLayout HorizontalOptions="Center" Margin="100">
+        <Button Text="Add new" HorizontalOptions="End" Clicked="GenNewEmployee"/>
+        <Label Text="Active Employees:" FontSize="Large" HorizontalOptions="Center"/>
+        <CollectionView ItemsSource="{Binding ActiveEmployees}" EmptyView="Please Refresh">
+            <CollectionView.Header>
+                <Grid ColumnDefinitions="400,100,300,80" BackgroundColor="Grey">
+                    <Label Text="Employee Id" Grid.Column="0"/>
+                    <Label Text="Employee Name" Grid.Column="1"/>
+                    <Label Text="Phone Number" Grid.Column="2"/>
+                    <Label Text="Active/Currently Employed" Grid.Column="3"/>
+                </Grid>
+                
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:EmployeeEntity">
+                    <Grid ColumnDefinitions="400,100,300,265" HorizontalOptions="Center" BackgroundColor="DarkGray">
+                        <Border Stroke="black">
+                            <Label Text="{Binding Id}"
+                             Grid.Column="0"/>
+                        </Border>
+                        <Border Stroke="black" Grid.Column="1">
+                            <Label Text="{Binding FullName}"
+                               x:Name="ThisEmployee"
+                               Grid.Column="1"/>
+                        </Border>
+                        <Border Stroke="black" Grid.Column="2"/>
+                        <Label Text="{Binding PhoneNumber}"
+                           Grid.Column="2"/>
+                        <Border Stroke ="black" Grid.Column="3"/>
+                        <CheckBox IsChecked="{Binding IsActive}" Grid.Column="3" AutomationId="{Binding Id}" CheckedChanged="OnCheckBoxCheckedChanged"/>
+
+                        </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        
+        <Label Text="Inactive Employees:" FontSize="Large" HorizontalOptions="Center"/>
+        <CollectionView ItemsSource="{Binding InactiveEmployees}" EmptyView="Please Refresh">
+            <CollectionView.Header>
+                <Grid ColumnDefinitions="400,100,300,80" BackgroundColor="Grey">
+                    <Label Text="Employee Id" Grid.Column="0"/>
+                    <Label Text="Employee Name" Grid.Column="1"/>
+                    <Label Text="Phone Number" Grid.Column="2"/>
+                    <Label Text="Active/Currently Employed" Grid.Column="3"/>
+                </Grid>
+
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:EmployeeEntity">
+                    <Grid ColumnDefinitions="400,100,300,265" HorizontalOptions="Center" BackgroundColor="DarkGray">
+                        <Border Stroke="black">
+                            <Label Text="{Binding Id}" Grid.Column="0"/>
+                            
+                        </Border>
+                        <Border Stroke="black" Grid.Column="1">
+                            <Label Text="{Binding FullName}"
+                       x:Name="ThisEmployee"
+                       Grid.Column="1"/>
+                        </Border>
+                        <Border Stroke="black" Grid.Column="2"/>
+                        <Label Text="{Binding PhoneNumber}"
+                   Grid.Column="2"/>
+                        <Border Stroke ="black" Grid.Column="3"/>
+                        <CheckBox IsChecked="{Binding IsActive}" Grid.Column="3" AutomationId="{Binding Id}" CheckedChanged="OnCheckBoxCheckedChanged"/>
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

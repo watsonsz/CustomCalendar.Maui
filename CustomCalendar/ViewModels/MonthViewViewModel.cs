@@ -1,5 +1,7 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Mvvm.Input;
 using CustomCalendar.BusinessEntity;
+using CustomCalendar.CustomViews;
 using CustomCalendar.DataAccess.Repositories;
 using CustomCalendar.Helpers;
 using System;
@@ -38,11 +40,14 @@ namespace CustomCalendar.ViewModels
         public string CurrentMonth {  get; set; }
         public List<DayViewModel> Days { get; set; }
         public List<EmployeeEntity> Employees { get; set; }
+
+
         public int ShiftSelect { get; set; }
 
 
         public DateTime EmployeeDatePicked { get; set; }
         public EmployeeEntity SelectedEmployee { get; set; }
+        public string ErrorMessage { get; internal set; }
 
         #region Methods
         private void InitializeDayViews(DateTime selectedMonth)
@@ -78,14 +83,20 @@ namespace CustomCalendar.ViewModels
             }
         }
 
-        [RelayCommand]
-        void AddEmployee()
+        public bool AddEmployee(bool acknowledged)
         {
             foreach(var day in Days)
             {
                 if(day.Date == EmployeeDatePicked)
                 {
+                   bool assigned = day.CheckIfAssigned(SelectedEmployee.Id);
                     //need to define a shift
+
+                    if (assigned && !acknowledged)
+                    {
+                        ErrorMessage = "This Person has already been assigned to a shift this day";
+                        return true;
+                    }
                     switch (ShiftSelect)
                     {
                         case 1:
@@ -98,9 +109,18 @@ namespace CustomCalendar.ViewModels
                             day.Lastshiftemployees.Add(SelectedEmployee);
                             break;
                     }
-
+                    
                 }
+               
             }
+            return false;
+        }
+
+        [RelayCommand]
+        void SetShiftSelect(string shiftSelect)
+        {
+            var shiftChoice = Int32.Parse(shiftSelect);
+            ShiftSelect = shiftChoice;
         }
 
         public void SaveDays()

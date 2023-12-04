@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.Input;
 using CustomCalendar.BusinessEntity;
 using CustomCalendar.DataAccess.Repositories;
@@ -74,5 +75,45 @@ public partial class MonthView : ContentView
 
         _repo.SaveMonth(monthEntity);
         _viewModel.SaveDays();
+    }
+
+    private void AssignEmployee(object sender, EventArgs e)
+    {
+        var label = this.FindByName<Label>("ErrorLabel");
+        var button = this.FindByName<Button>("Error Button");
+        
+        SideBar.Children.Remove(label);
+        SideBar.Children.Remove(button);
+
+        if (_viewModel.AddEmployee(false))
+        {
+            var errorLabel = new Label()
+            {
+                Text = _viewModel.ErrorMessage,
+                AutomationId = "ErrorLabel"
+            };
+            SideBar.Children.Add(errorLabel);
+
+            var Button = new Button()
+            {
+                Text = "Assign Anyway",
+                Command = AddAnywayCommand,
+            };
+            Button.AutomationId = "ErrorButton";
+            SideBar.Children.Add(Button);
+            
+        }
+            
+    }
+
+    [RelayCommand]
+    void AddAnyway()
+    {
+        var label = this.FindByName<Label>("ErrorLabel");
+        var button = this.FindByName("ErrorButton");
+        SideBar.Children.Remove(label);
+        SideBar.Children.Remove(button);
+
+        _viewModel.AddEmployee(true);
     }
 }

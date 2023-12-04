@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viewmodel ="clr-namespace:CustomCalendar.ViewModels"
              xmlns:model ="clr-namespace:CustomCalendar.BusinessEntity;assembly=CustomCalendar.BusinessEntity"
              x:Class="CustomCalendar.CustomViews.MonthView"
@@ -106,7 +107,7 @@ VerticalOptions="Center"
         <Border Stroke="white"
                 Grid.RowSpan="7"
                 Grid.Column="7">
-            <VerticalStackLayout>
+            <VerticalStackLayout x:Name="SideBar">
                 <Label Text="Schedule Employee"/>
                 <DatePicker x:Name="EMDatePicker"
                     MinimumDate="01/01/2022"
@@ -118,7 +119,16 @@ VerticalOptions="Center"
                     ItemDisplayBinding="{Binding FullName}"
                     SelectedItem="{Binding SelectedEmployee}"/>
                 <Button Text="Assign"
-                        Command="{Binding AddEmployeeCommand}"/>
+                        Clicked="AssignEmployee"/>
+                <RadioButton Content="First Shift" >
+                    <RadioButton.Behaviors>
+                        <toolkit:EventToCommandBehavior
+                            EventName="CheckedChanged"
+                            Command="{Binding SetShiftSelectCommand}"
+                            CommandParameter="1"/>
+                    </RadioButton.Behaviors>
+                </RadioButton>
+                
                 <Button Text="Save Schedule"
                         Clicked="SaveMonth"/>
 

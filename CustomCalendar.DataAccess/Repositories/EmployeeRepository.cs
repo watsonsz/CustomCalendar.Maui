@@ -144,5 +144,30 @@ namespace CustomCalendar.DataAccess.Repositories
             }
             return employees;
         }
+
+        public void UpdateEmployee(EmployeeEntity employeeEntity)
+        {
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand
+                    {
+                        CommandText = $"UPDATE dbo.Employees SET Id = @Id, FullName = @Name, PhoneNumber = @Phone, Address = @Address, MoreHours = @Hours, IsActive = @Active WHERE Id = @Id",
+
+                        Connection = connection
+                    };
+                    command.Parameters.Add("@Id", SqlDbType.UniqueIdentifier).Value = employeeEntity.Id;
+                    command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = employeeEntity.FullName;
+                    command.Parameters.Add("@Phone", SqlDbType.NVarChar).Value = employeeEntity.PhoneNumber;
+                    command.Parameters.Add("@Address", SqlDbType.NVarChar).Value = employeeEntity.Address;
+                    command.Parameters.Add("@Hours", SqlDbType.Binary).Value = BitConverter.GetBytes(employeeEntity.WantsMoreHours);
+                    command.Parameters.Add("@Active", SqlDbType.Binary).Value = BitConverter.GetBytes(employeeEntity.IsActive);
+                    connection.Open();
+                     int rows = command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+        }
     }
 }

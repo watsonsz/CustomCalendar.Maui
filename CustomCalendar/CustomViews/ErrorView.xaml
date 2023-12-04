@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="CustomCalendar.CustomViews.ErrorView"
+               xmlns:viewmodel ="clr-namespace:CustomCalendar.CustomViews"
+x:DataType ="viewmodel:ErrorView">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label 
+            Text="{Binding Message}"
+            Grid.ColumnSpan="2"
+            Grid.Row="0"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button Text="Ok" Clicked="OK_Button_Clicked" Grid.Row="1" Grid.Column="0"/>
+        <Button Text="Assign Anyway" Clicked="Assign_Anyway" Grid.Row="1" Grid.Column="1"/>
+    </Grid>
+</toolkit:Popup>
