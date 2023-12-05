@@ -25,7 +25,7 @@ namespace CustomCalendar.ViewModels
        
         public int DAYOFWEEKNUMBER { get; set; }
 
-        public EmployeeEntity SelectedEmployee { get; set; }
+        public EmployeeEntity DaySelectedEmployee { get; set; }
 
         //These need to be done with employees instead of strings
 
@@ -55,7 +55,7 @@ namespace CustomCalendar.ViewModels
         [RelayCommand]
         void RemoveEmployee()
         {
-            var removedEmployee = SelectedEmployee;
+            var removedEmployee = DaySelectedEmployee;
             CheckEmployee(Firstshiftemployees, removedEmployee);
             CheckEmployee(Secondshiftemployees, removedEmployee);
             CheckEmployee(Lastshiftemployees, removedEmployee);

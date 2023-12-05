@@ -89,7 +89,8 @@ namespace CustomCalendar.ViewModels
             {
                 if(day.Date == EmployeeDatePicked)
                 {
-                   bool assigned = day.CheckIfAssigned(SelectedEmployee.Id);
+                   //bool assigned = day.CheckIfAssigned(SelectedEmployee.Id);
+                   bool assigned = false;
                     //need to define a shift
 
                     if (assigned && !acknowledged)
@@ -101,12 +102,15 @@ namespace CustomCalendar.ViewModels
                     {
                         case 1:
                             day.Firstshiftemployees.Add(SelectedEmployee);
+                            SelectedEmployee = null;
                             break;
                         case 2:
                             day.Secondshiftemployees.Add(SelectedEmployee);
+                            SelectedEmployee = null;
                             break;
                         case 3:
                             day.Lastshiftemployees.Add(SelectedEmployee);
+                            SelectedEmployee = null;
                             break;
                     }
                     
@@ -144,6 +148,7 @@ namespace CustomCalendar.ViewModels
             }
             _newRepo.SaveDays(daysList);
         }
+
         #endregion
     }
 }

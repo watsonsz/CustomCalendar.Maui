@@ -79,41 +79,23 @@ public partial class MonthView : ContentView
 
     private void AssignEmployee(object sender, EventArgs e)
     {
-        var label = this.FindByName<Label>("ErrorLabel");
-        var button = this.FindByName<Button>("Error Button");
-        
-        SideBar.Children.Remove(label);
-        SideBar.Children.Remove(button);
+        ErrorButton.IsVisible = false;
+        ErrorMessage.IsVisible = false;
 
         if (_viewModel.AddEmployee(false))
         {
-            var errorLabel = new Label()
-            {
-                Text = _viewModel.ErrorMessage,
-                AutomationId = "ErrorLabel"
-            };
-            SideBar.Children.Add(errorLabel);
-
-            var Button = new Button()
-            {
-                Text = "Assign Anyway",
-                Command = AddAnywayCommand,
-            };
-            Button.AutomationId = "ErrorButton";
-            SideBar.Children.Add(Button);
+            ErrorMessage.IsVisible = true;
+            ErrorButton.IsVisible = true;
+            ErrorMessage.Text = _viewModel.ErrorMessage;
             
         }
             
     }
 
-    [RelayCommand]
-    void AddAnyway()
+    private void ErrorButton_Clicked(object sender, EventArgs e)
     {
-        var label = this.FindByName<Label>("ErrorLabel");
-        var button = this.FindByName("ErrorButton");
-        SideBar.Children.Remove(label);
-        SideBar.Children.Remove(button);
-
+        ErrorButton.IsVisible = false;
+        ErrorMessage.IsVisible = false;
         _viewModel.AddEmployee(true);
     }
 }

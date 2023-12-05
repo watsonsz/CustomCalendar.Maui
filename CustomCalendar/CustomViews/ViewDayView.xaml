@@ -20,7 +20,7 @@
                     TextDecorations="Underline"
                     />
                 <ListView ItemsSource="{Binding Firstshiftemployees}"
-                          SelectedItem="{Binding SelectedEmployee}">
+                          SelectedItem="{Binding DaySelectedEmployee}">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="model:EmployeeEntity">
                             <!--<TextCell
@@ -40,6 +40,59 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Label
+     x:Name="SecondShift"
+     Text="Second Shift"
+     TextDecorations="Underline"
+     />
+                <ListView ItemsSource="{Binding Secondshiftemployees}"
+                    SelectedItem="{Binding DaySelectedEmployee}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:EmployeeEntity">
+                            <!--<TextCell
+                 Text="{Binding Name}"/>-->
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding FullName}"
+                            x:Name="ThisEmployee"
+                            Grid.Column="0"/>
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <!--<Label
+x:Name="ThirdShift"
+Text="Third Shift"
+TextDecorations="Underline"
+/>
+                <ListView ItemsSource="{Binding Lastshiftemployees}"
+               SelectedItem="{Binding DaySelectedEmployee}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:EmployeeEntity">
+                            --><!--<TextCell
+            Text="{Binding Name}"/>--><!--
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding FullName}"
+                       x:Name="ThisEmployee"
+                       Grid.Column="0"/>
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>-->
+
                 <Button Text="Remove Employee"
                         FontSize="Body"
                     Command="{Binding RemoveEmployeeCommand}"

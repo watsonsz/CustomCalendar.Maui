@@ -120,7 +120,8 @@ VerticalOptions="Center"
                     SelectedItem="{Binding SelectedEmployee}"/>
                 <Button Text="Assign"
                         Clicked="AssignEmployee"/>
-                <RadioButton Content="First Shift" >
+                
+                <RadioButton Content="First Shift" GroupName="shift">
                     <RadioButton.Behaviors>
                         <toolkit:EventToCommandBehavior
                             EventName="CheckedChanged"
@@ -128,10 +129,45 @@ VerticalOptions="Center"
                             CommandParameter="1"/>
                     </RadioButton.Behaviors>
                 </RadioButton>
-                
+                <RadioButton Content="Second Shift" GroupName="shift" >
+                    <RadioButton.Behaviors>
+                        <toolkit:EventToCommandBehavior
+            EventName="CheckedChanged"
+            Command="{Binding SetShiftSelectCommand}"
+            CommandParameter="2"/>
+                    </RadioButton.Behaviors>
+                </RadioButton>
+                <RadioButton Content="Third Shift" GroupName="shift" >
+                    <RadioButton.Behaviors>
+                        <toolkit:EventToCommandBehavior
+            EventName="CheckedChanged"
+            Command="{Binding SetShiftSelectCommand}"
+            CommandParameter="3"/>
+                    </RadioButton.Behaviors>
+                </RadioButton>
+                <RadioButton Content="Kitchen Staff" GroupName="shift">
+                    <RadioButton.Behaviors>
+                        <toolkit:EventToCommandBehavior
+            EventName="CheckedChanged"
+            Command="{Binding SetShiftSelectCommand}"
+            CommandParameter="5"/>
+                    </RadioButton.Behaviors>
+                </RadioButton>
+                <RadioButton Content="HouseKeeping" GroupName="shift">
+                    <RadioButton.Behaviors>
+                        <toolkit:EventToCommandBehavior
+            EventName="CheckedChanged"
+            Command="{Binding SetShiftSelectCommand}"
+            CommandParameter="4"/>
+                    </RadioButton.Behaviors>
+                </RadioButton>
+
                 <Button Text="Save Schedule"
                         Clicked="SaveMonth"/>
 
+
+                <Label x:Name="ErrorMessage" Text="" IsVisible="False"/>
+                <Button x:Name="ErrorButton" Text="Assign Anyway" Clicked="ErrorButton_Clicked" IsVisible="False"/>
             </VerticalStackLayout>
                    
         </Border>
